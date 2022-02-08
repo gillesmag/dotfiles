@@ -3,7 +3,7 @@ local map = vim.api.nvim_set_keymap
 local M = {}
 
 M.options = {
-	mapleader = " "
+  mapleader = " "
 }
 
 M.general = function()
@@ -34,7 +34,7 @@ end
 
 M.setup = function()
   M.general()
-	M.nvimtree()
+  M.nvimtree()
 end
 
 return M
