@@ -31,7 +31,11 @@ return require("packer").startup(function()
     requires = {
       "kyazdani42/nvim-web-devicons",
     },
-    config = function() require("nvim-tree").setup() end
+    config = function()
+      require("nvim-tree").setup {
+        auto_close = true
+      }
+    end
   }
 
   use {
