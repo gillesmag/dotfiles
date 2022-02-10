@@ -3,6 +3,8 @@ vim.cmd [[packadd packer.nvim]]
 return require("packer").startup(function()
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
+  use "lewis6991/impatient.nvim"
+  use "nathom/filetype.nvim"
   use "nvim-lua/plenary.nvim"
 
   use {
@@ -21,7 +23,7 @@ return require("packer").startup(function()
     requires = {
       "nvim-lua/plenary.nvim"
     },
-    config = function() require("plugins.configs.gitsigns").setup() end
+    config = function() require("gitsigns").setup() end
   }
 
   use {
@@ -54,7 +56,24 @@ return require("packer").startup(function()
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
-      require("lualine").setup()
+      require("lualine").setup {
+        options = {
+          icons_enabled = false,
+          section_separators = '', component_separators = ''
+        }
+      }
     end
+  }
+
+  use {
+    "numToStr/Comment.nvim",
+    module = "Comment",
+    keys = { "gcc" },
+    config = function()
+      require('Comment').setup()
+    end,
+    setup = function()
+       require("core.mappings").comment()
+    end,
   }
 end)

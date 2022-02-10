@@ -10,6 +10,8 @@ g.mapleader = options.mapleader
 -- Numbers
 opt.number = true                    -- enable line numbers
 
+opt.mouse = "a"                      -- enable mouse usage in all modes
+
 -- Indent
 opt.shiftwidth = 2                   -- number of spaces to use for indenting
 opt.softtabstop = 2                  -- number of spaces to use when inserting a tab
