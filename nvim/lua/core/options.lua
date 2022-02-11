@@ -10,6 +10,8 @@ g.mapleader = options.mapleader
 -- Numbers
 opt.number = true                    -- enable line numbers
 
+opt.cul = true                       -- enable cursor line
+
 opt.mouse = "a"                      -- enable mouse usage in all modes
 
 -- Indent
@@ -23,3 +25,5 @@ opt.splitbelow = true                -- open new windows to the bottom
 opt.splitright = true                -- open new windows to the right
 
 opt.termguicolors = true
+
+opt.shortmess:append "sI"            -- disable nvim intro

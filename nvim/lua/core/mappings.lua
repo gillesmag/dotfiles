@@ -35,21 +35,21 @@ M.lspconfig = function()
 end
 
 M.telescope = function()
-  map("n", "<leader>fb", ":Telescope buffers <CR>")
+  map("n", "<leader>bb", ":Telescope buffers <CR>")
   map("n", "<leader>ff", ":Telescope find_files <CR>")
   map("n", "<leader>gs", ":Telescope git_status <CR>")
   map("n", "<leader>fw", ":Telescope live_grep <CR>")
-end
-
-M.setup = function()
-  M.general()
-  M.nvimtree()
 end
 
 M.comment = function()
   local m = "<leader>/"
   map("n", m, ":lua require('Comment.api').toggle_current_linewise()<CR>")
   map("v", m, ":lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+end
+
+M.setup = function()
+  M.general()
+  M.nvimtree()
 end
 
 return M
