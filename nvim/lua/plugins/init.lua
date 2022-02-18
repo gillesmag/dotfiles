@@ -7,42 +7,47 @@ return require("packer").startup(function()
   use "nathom/filetype.nvim"
   use "nvim-lua/plenary.nvim"
 
+  use "neovim/nvim-lspconfig"
+
   use {
-    "neovim/nvim-lspconfig",
-    -- TODO(gm): add LSP
-    -- setup = function() require("plugins.configs.lspconfig").setup() end
+    "folke/lua-dev.nvim",
+    module = "lua-dev"
   }
+
+  use {
+    "williamboman/nvim-lsp-installer",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "folke/lua-dev.nvim",
+    },
+    config = require("plugins.configs.lsp-installer")
+  }
+
 
   use {
     "nvim-treesitter/nvim-treesitter",
-    config = function() require("plugins.configs.treesitter").setup() end
+    config = require("plugins.configs.treesitter"),
   }
 
+  -- Git
   use {
     "lewis6991/gitsigns.nvim",
     requires = {
       "nvim-lua/plenary.nvim"
     },
-    config = function() require("gitsigns").setup() end
+    config = function()
+      require("gitsigns").setup()
+    end
   }
 
+  -- File explorer(s)
   use {
     "kyazdani42/nvim-tree.lua",
     requires = {
       "kyazdani42/nvim-web-devicons",
     },
     config = function()
-      require("nvim-tree").setup {
-        auto_close = true
-      }
-    end
-  }
-
-  use {
-    "folke/tokyonight.nvim",
-    event = "VimEnter",
-    config = function()
-      vim.cmd[[colorscheme tokyonight]]
+      require("nvim-tree").setup()
     end
   }
 
@@ -53,6 +58,16 @@ return require("packer").startup(function()
     --config = function() require("plugins.configs.telescope").setup() end,
     setup = function()
       require("core.mappings").telescope()
+    end
+  }
+
+  -- UI
+  -- Theme
+  use {
+    "folke/tokyonight.nvim",
+    event = "VimEnter",
+    config = function()
+      vim.cmd[[colorscheme tokyonight]]
     end
   }
 
@@ -73,10 +88,10 @@ return require("packer").startup(function()
     "numToStr/Comment.nvim",
     module = "Comment",
     keys = { "gcc" },
-    config = function()
+    setup = function()
       require('Comment').setup()
     end,
-    setup = function()
+    config = function()
        require("core.mappings").comment()
     end,
   }
