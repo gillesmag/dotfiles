@@ -1,36 +1,35 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd "packadd packer.nvim"
 
-return require("packer").startup(function()
-  -- Packer can manage itself
-  use "wbthomason/packer.nvim"
-  use "lewis6991/impatient.nvim"
-  use "nathom/filetype.nvim"
-  use "nvim-lua/plenary.nvim"
+local plugins = {
+  { "nvim-lua/plenary.nvim" },
+  { "wbthomason/packer.nvim" },
 
-  use "neovim/nvim-lspconfig"
+  { "lewis6991/impatient.nvim" },
+  { "nathom/filetype.nvim" },
 
-  use {
+  { "neovim/nvim-lspconfig" },
+
+  {
     "folke/lua-dev.nvim",
     module = "lua-dev"
-  }
+  },
 
-  use {
+  {
     "williamboman/nvim-lsp-installer",
     requires = {
       "neovim/nvim-lspconfig",
       "folke/lua-dev.nvim",
     },
     config = require("plugins.configs.lsp-installer")
-  }
+  },
 
-
-  use {
+  {
     "nvim-treesitter/nvim-treesitter",
     config = require("plugins.configs.treesitter"),
-  }
+  },
 
   -- Git
-  use {
+  {
     "lewis6991/gitsigns.nvim",
     requires = {
       "nvim-lua/plenary.nvim"
@@ -38,10 +37,10 @@ return require("packer").startup(function()
     config = function()
       require("gitsigns").setup()
     end
-  }
+  },
 
   -- File explorer(s)
-  use {
+  {
     "kyazdani42/nvim-tree.lua",
     requires = {
       "kyazdani42/nvim-web-devicons",
@@ -49,9 +48,9 @@ return require("packer").startup(function()
     config = function()
       require("nvim-tree").setup()
     end
-  }
+  },
 
-  use {
+  {
     "nvim-telescope/telescope.nvim",
     module = "telescope",
     cmd = "Telescope",
@@ -59,32 +58,41 @@ return require("packer").startup(function()
     setup = function()
       require("core.mappings").telescope()
     end
-  }
+  },
 
   -- UI
   -- Theme
-  use {
+  {
     "folke/tokyonight.nvim",
-    event = "VimEnter",
+    --event = "VimEnter",
     config = function()
-      vim.cmd[[colorscheme tokyonight]]
+      vim.cmd "colorscheme tokyonight"
     end
-  }
+  },
 
-  use {
+  {
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup {
         options = {
-          icons_enabled = false,
+          theme = 'tokyonight',
+          icons_enabled = true,
           section_separators = '', component_separators = ''
         }
       }
     end
-  }
+  },
 
-  use {
+  { "tpope/vim-repeat" },
+  { "tpope/vim-surround" },
+
+  {
+    "folke/twilight.nvim",
+    config = function() require("twilight").setup {} end,
+  },
+
+  {
     "numToStr/Comment.nvim",
     module = "Comment",
     keys = { "gcc" },
@@ -94,5 +102,7 @@ return require("packer").startup(function()
     config = function()
        require("core.mappings").comment()
     end,
-  }
-end)
+  },
+}
+
+require("core.packer").run(plugins)
