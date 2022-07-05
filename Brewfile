@@ -1,1 +1,5 @@
 brew "git-delta"
+brew "neovim"
+brew "fd"
+brew "ripgrep"
+brew "shellcheck"
