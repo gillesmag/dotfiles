@@ -7,3 +7,4 @@ alias gs='git status'
 
 alias gds='git diff --staged'
 alias gpo='git push -u origin HEAD'
+alias gcm='git commit -m'
