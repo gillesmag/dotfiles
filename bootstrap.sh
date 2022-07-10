@@ -12,4 +12,4 @@ if [ ! -d "$HOME/.config" ]; then
   mkdir ~/.config
 fi
 
-ln -nfs $(pwd)/nvim ~/.config/nvim
+ln -nfs "$(pwd)/nvim" ~/.config/nvim

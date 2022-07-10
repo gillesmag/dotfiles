@@ -1,7 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 
-local options = require("core.mappings").options
+local options = require("core.keymaps").options
 
 opt.title = true
 

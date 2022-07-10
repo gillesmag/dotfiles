@@ -7,46 +7,23 @@ local plugins = {
   { "lewis6991/impatient.nvim" },
   { "nathom/filetype.nvim" },
 
-  { "neovim/nvim-lspconfig" },
-
   {
     "folke/lua-dev.nvim",
     module = "lua-dev"
   },
 
   {
-    "williamboman/nvim-lsp-installer",
-    requires = {
-      "neovim/nvim-lspconfig",
-      "folke/lua-dev.nvim",
-    },
-    config = require("plugins.configs.lsp-installer")
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
-    config = require("plugins.configs.treesitter"),
+    config = function()
+      require("plugins.configs.treesitter")
+    end,
   },
 
   -- Git
   {
     "lewis6991/gitsigns.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim"
-    },
     config = function()
       require("gitsigns").setup()
-    end
-  },
-
-  -- File explorer(s)
-  {
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-      "kyazdani42/nvim-web-devicons",
-    },
-    config = function()
-      require("nvim-tree").setup()
     end
   },
 
@@ -56,41 +33,86 @@ local plugins = {
     cmd = "Telescope",
     --config = function() require("plugins.configs.telescope").setup() end,
     setup = function()
-      require("core.mappings").telescope()
+      require("core.keymaps").telescope()
+    end
+  },
+
+  -- LSP
+  {
+    "williamboman/nvim-lsp-installer",
+    opt = true,
+    --cmd = require("core.lazy_load").lsp_cmds,
+    setup = function()
+      require("core.lazy_load").on_file_open "nvim-lsp-installer"
+    end,
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    after = "nvim-lsp-installer",
+    module = "lspconfig",
+    config = function()
+      require "plugins.configs.lsp_installer"
+      require "plugins.configs.lspconfig"
     end
   },
 
   -- UI
+
+  -- Icons
+  { "kyazdani42/nvim-web-devicons" },
+
   -- Theme
   {
     "folke/tokyonight.nvim",
-    --event = "VimEnter",
     config = function()
       vim.cmd "colorscheme tokyonight"
     end
   },
 
+  -- Status line
   {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup {
         options = {
           theme = 'tokyonight',
           icons_enabled = true,
-          section_separators = '', component_separators = ''
+          section_separators = '',
+          component_separators = ''
         }
       }
+    end
+  },
+
+  -- Buffer line
+  {
+    "akinsho/bufferline.nvim",
+    tag = "v2.*",
+    config = function()
+      require("bufferline").setup {
+        options = {
+          mode = "tabs",
+        }
+      }
+    end,
+  },
+
+  -- File explorer(s)
+  {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup()
     end
   },
 
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
 
-  {
-    "folke/twilight.nvim",
-    config = function() require("twilight").setup {} end,
-  },
+  --{
+  --  "folke/twilight.nvim",
+  --  config = function() require("twilight").setup {} end,
+  --},
 
   {
     "numToStr/Comment.nvim",
@@ -100,7 +122,7 @@ local plugins = {
       require('Comment').setup()
     end,
     config = function()
-       require("core.mappings").comment()
+       require("core.keymaps").comment()
     end,
   },
 }

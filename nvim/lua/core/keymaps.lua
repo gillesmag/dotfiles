@@ -1,6 +1,6 @@
 local map = function(mode, lhs, rhs)
   local opts = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 local M = {}
@@ -13,7 +13,9 @@ M.general = function()
   -- Write, write & quit and quit
   map("n", "<leader>w", ":w<CR>")
   map("n", "<leader>wq", ":wq<CR>")
-  map("n", "<leader>q", ":q<CR>")
+  map("n", "<leader>q", ":bdelete<CR>")
+  map("n", "<leader>x", ":q<CR>")
+
 
   -- Unhighlight searched term
   map("v", "<C-h>", ":nohlsearch<CR>")
@@ -26,11 +28,23 @@ M.general = function()
   map("n", "<leader>wj", "<C-w>j")
   map("n", "<leader>wk", "<C-w>k")
 
+  -- Resize with arrows
+  -- map("n", "<C-Up>", ":resize -2<CR>")
+  -- map("n", "<C-Down>", ":resize +2<CR>")
+  -- map("n", "<C-Left>", ":vertical resize -2<CR>")
+  -- map("n", "<C-Right>", ":vertical resize +2<CR>")
+
+  map("i", "jk", "<ESC>")
+
   -- Move windows around
   map("n", "<leader>wH", "<C-w>H")
   map("n", "<leader>wL", "<C-w>L")
   map("n", "<leader>wJ", "<C-w>J")
   map("n", "<leader>wK", "<C-w>K")
+
+  -- Split windows
+  map("n", "<leader>w|", ":vsplit<CR>")
+  map("n", "<leader>w-", ":split<CR>")
 
   -- Buffers
   map("n", "<leader>bn", ":enew<CR>")
@@ -39,6 +53,12 @@ M.general = function()
   -- Split vertically and horizontally
   map("n", "<leader>b|", ":vsplit<CR>")
   map("n", "<leader>b-", ":split<CR>")
+
+  -- Open file under word in respective application
+  map("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>")
+
+  map("v", "<", "<gv")
+  map("v", ">", ">gv")
 end
 
 M.nvimtree = function()
@@ -47,20 +67,28 @@ M.nvimtree = function()
 end
 
 M.lspconfig = function()
-  local prefix = "<leader>c"
-  map('n', prefix .. 'D', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-  map('n', prefix .. 'd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  map('n', prefix .. 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  map('n', prefix .. 'i', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  map('n', prefix .. '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  map('n', prefix .. 'wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-  map('n', prefix .. 'wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-  map('n', prefix .. 'wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
-  map('n', prefix .. 't', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  map('n', prefix .. 'r', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  map('n', prefix .. 'a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  map('n', prefix .. 'R', '<cmd>lua vim.lsp.buf.references()<CR>')
-  map('n', prefix .. 'f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  local lspconfig = {
+    ["gD"] = { function() vim.lsp.buf.declaration() end },
+    ["gd"] = { function() vim.lsp.buf.definition() end },
+    ["K"] = { function() vim.lsp.buf.hover() end },
+    ["gi"] = { function() vim.lsp.buf.implementation() end },
+    ["ls"] = { function() vim.lsp.buf.signature_help() end },
+    ["D"] = { function() vim.lsp.buf.type_definition() end },
+    ["r"] = { function() vim.lsp.buf.rename() end },
+    ["ca"] = { function() vim.lsp.buf.code_action() end },
+    ["gr"] = { function() vim.lsp.buf.references() end },
+    ["f"] = { function() vim.diagnostic.open_float() end },
+    ["[d"] = { function() vim.diagnostic.goto_prev() end },
+    ["d]"] = { function() vim.diagnostic.goto_next() end },
+    ["fm"] = { function() vim.lsp.buf.formatting() end },
+    ["wa"] = { function() vim.lsp.buf.add_workspace_folder() end },
+    ["wr"] = { function() vim.lsp.buf.remove_workspace_folder() end },
+    ["wl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end },
+  }
+
+  for k, v in pairs(lspconfig) do
+    map("n", "<leader>" .. k, v[1])
+  end
 end
 
 M.telescope = function()
