@@ -1,4 +1,4 @@
-local present, ts_config = pcall(require, "nvim-treesitter.configs")
+local present, treesitter = pcall(require, "nvim-treesitter.configs")
 
 if not present then
   return
@@ -6,14 +6,23 @@ end
 
 local default = {
   ensure_installed = {
-    "lua",
-    "vim",
-    "rust",
     "bash",
-    "javascript",
-    "typescript",
-    "yaml",
+    "c",
+    "cpp",
+    "dot",
     "go",
+    "hcl",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "rust",
+    "sql",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml",
   },
   highlight = {
     enable = true,
@@ -21,4 +30,4 @@ local default = {
   },
 }
 
-ts_config.setup(default)
+treesitter.setup(default)

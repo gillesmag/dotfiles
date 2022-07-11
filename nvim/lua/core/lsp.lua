@@ -1,21 +1,22 @@
 local M = {}
 
 M.servers = { 
-  "sumneko_lua",    -- Lua
   "ansiblels",      -- Ansible
-  "rust_analyzer",  -- Rust
   "clangd",         -- C/C++
   "cmake",          -- cmake
-  "pyright",        -- Python
-  "tsserver",       -- JavaScript/TypeScript
-  "dockerls",       -- Dockerfile
   "cssls",          -- CSS
-  "html",           -- HTML
-  "jsonls",         -- JSON
-  "texlab",         -- LaTeX
-  "jdtls",          -- Java
-  "yamlls",         -- YAML
+  "dockerls",       -- Dockerfile
   "gopls",          -- Go
+  "html",           -- HTML
+  "jdtls",          -- Java
+  "jsonls",         -- JSON
+  "pyright",        -- Python
+  "rust_analyzer",  -- Rust
+  "sumneko_lua",    -- Lua
+  "terraformls",    -- Terraform
+  "texlab",         -- LaTeX
+  "tsserver",       -- JavaScript/TypeScript
+  "yamlls",         -- YAML
 }
 
 M.on_attach = function(client, _)

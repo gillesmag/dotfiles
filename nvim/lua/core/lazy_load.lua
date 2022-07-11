@@ -51,4 +51,13 @@ M.lsp_cmds = {
   "LspPrintInstalled",
 }
 
+M.treesitter_cmds = {
+  "TSInstall",
+  "TSBufEnable",
+  "TSBufDisable",
+  "TSEnable",
+  "TSDisable",
+  "TSModuleInhfo",
+}
+
 return M
