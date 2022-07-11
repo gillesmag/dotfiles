@@ -7,3 +7,7 @@ for plugin ($plugins); do
   fi
 done
 unset plugin
+
+if [[ -f "$HOME/.zsh_custom" ]]; then
+  source "$HOME/.zsh_custom"
+fi
