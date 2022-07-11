@@ -20,3 +20,6 @@ fi
 
 ln -nfs "$(pwd)/zsh/zshrc.sh" "$HOME/.zshrc"
 ln -nfs "$(pwd)/zsh/config" "$HOME/.zsh"
+
+# tmux
+ln -nfs "$(pwd)/tmux/.tmux.conf" "$HOME/.tmux.conf"
