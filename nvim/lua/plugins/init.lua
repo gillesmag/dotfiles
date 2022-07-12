@@ -33,11 +33,24 @@ local plugins = {
     end
   },
 
+  -- Telescope
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup()
+    end,
+  },
+
+  { "nvim-telescope/telescope-file-browser.nvim" },
+  { "nvim-telescope/telescope-project.nvim" },
+
   {
     "nvim-telescope/telescope.nvim",
     module = "telescope",
     cmd = "Telescope",
-    --config = function() require("plugins.configs.telescope").setup() end,
+    config = function()
+      require("plugins.configs.telescope")
+    end,
     setup = function()
       require("core.keymaps").telescope()
     end

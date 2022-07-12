@@ -99,6 +99,12 @@ M.telescope = function()
   -- files
   map("n", "<leader>ff", ":Telescope find_files <CR>")
   map("n", "<leader>fr", ":Telescope oldfiles <CR>")
+
+  map("n", "<leader>fp", ":Telescope projects <CR>")
+  map("n", "<leader>fb", ":Telescope file_browser<CR>")
+  map("n", "<leader>fh", ":Telescope help_tags<CR>")
+
+  map("n", "<C-p>", ":lua require('telescope').extensions.project.project{}<CR>")
 end
 
 M.comment = function()
