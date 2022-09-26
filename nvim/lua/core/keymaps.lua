@@ -109,8 +109,8 @@ end
 
 M.comment = function()
   local m = "<leader>/"
-  map("n", m, ":lua require('Comment.api').toggle_current_linewise()<CR>")
-  map("v", m, ":lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+  map("n", m, ":lua require('Comment.api').toggle.linewise.current()<CR>")
+  map("v", m, ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
 end
 
 M.packer = function()
