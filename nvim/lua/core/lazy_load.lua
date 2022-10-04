@@ -1,10 +1,8 @@
 local M = {}
-
 local autocmd = vim.api.nvim_create_autocmd
 
 M.lazy_load = function(tb)
    autocmd(tb.events, {
-      pattern = "*",
       group = vim.api.nvim_create_augroup(tb.augroup_name, {}),
       callback = function()
          if tb.condition() then
@@ -14,10 +12,13 @@ M.lazy_load = function(tb)
             -- This deferring only happens only when we do "nvim filename"
             if tb.plugins ~= "nvim-treesitter" then
                vim.defer_fn(function()
-                  vim.cmd("PackerLoad " .. tb.plugins)
+                  require("packer").loader(tb.plugin)
+                  if tb.plugin == "nvim-lspconfig" then
+                    vim.cmd "silent! do FileType"
+                  end
                end, 0)
             else
-               vim.cmd("PackerLoad " .. tb.plugins)
+               require("packer").loader(tb.plugins)
             end
          end
       end,
@@ -36,21 +37,6 @@ M.on_file_open = function(plugin_name)
    }
 end
 
-M.lsp_cmds = {
-  "LspInfo",
-  "LspStart",
-  "LspRestart",
-  "LspStop",
-  "LspInstall",
-  "LspUnInstall",
-  "LspUnInstallAll",
-  "LspInstall",
-  "LspInstallInfo",
-  "LspInstallLog",
-  "LspLog",
-  "LspPrintInstalled",
-}
-
 M.treesitter_cmds = {
   "TSInstall",
   "TSBufEnable",
@@ -58,6 +44,15 @@ M.treesitter_cmds = {
   "TSEnable",
   "TSDisable",
   "TSModuleInhfo",
+}
+
+M.mason_cmds = {
+  "Mason",
+  "MasonInstall",
+  "MasonInstallAll",
+  "MasonUninstall",
+  "MasonUninstallAll",
+  "MasonLog",
 }
 
 return M

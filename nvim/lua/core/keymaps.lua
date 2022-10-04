@@ -66,7 +66,7 @@ M.nvimtree = function()
   map("n", "<leader>e", ":NvimTreeFocus <CR>")
 end
 
-M.lspconfig = function()
+M.lspconfig = function(mapping_opt)
   local lspconfig = {
     ["gD"] = { function() vim.lsp.buf.declaration() end },
     ["gd"] = { function() vim.lsp.buf.definition() end },
@@ -87,7 +87,7 @@ M.lspconfig = function()
   }
 
   for k, v in pairs(lspconfig) do
-    map("n", "<leader>" .. k, v[1])
+    map("n", "<leader>" .. k, v[1], mapping_opt)
   end
 end
 
