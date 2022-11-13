@@ -8,6 +8,8 @@ for plugin ($plugins); do
 done
 unset plugin
 
+source $ZSH/aliases.zsh
+
 if [[ -f "$HOME/.zsh_custom" ]]; then
   source "$HOME/.zsh_custom"
 fi
