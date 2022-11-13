@@ -6,6 +6,7 @@ alias gd='git diff'
 alias gp='git pull'
 alias gs='git status'
 
+alias grs='git restore --staged'
 alias gcm='git commit -m'
 alias gds='git diff --staged'
 alias gpl='git pull'
