@@ -22,4 +22,7 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0.3
 killall Dock
+
+# VSCode disable PressAndHold
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 ```
