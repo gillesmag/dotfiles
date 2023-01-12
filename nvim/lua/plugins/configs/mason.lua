@@ -4,16 +4,27 @@ if not present then
   return
 end
 
-vim.api.nvim_create_augroup("_mason", { clear = true })
--- vim.api.nvim_create_autocmd("Filetype", {
---   pattern = "mason",
---   callback = function()
---   end,
---   group = "_mason",
--- })
-
 local options = {
-  ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
+  ensure_installed = {
+    "lua-language-server",
+    "ansible-language-server", -- Ansible
+    "clangd", -- C/C++
+    "cmake-language-server", -- cmake
+    "css-lsp", -- CSS
+    "dockerfile-language-server", -- Dockerfile
+    "gopls", -- Go
+    "html-lsp", -- HTML
+    "jdtls", -- Java
+    "json-lsp", -- JSON
+    "pyright", -- Python
+    "rust-analyzer", -- Rust
+    "terraform-ls", -- Terraform
+    "texlab", -- LaTeX
+    "typescript-language-server", -- JavaScript/TypeScript
+    "yaml-language-server" -- YAML
+  }, -- not an option from mason.nvim
+
+  PATH = "skip",
 
   ui = {
     icons = {
@@ -36,8 +47,6 @@ local options = {
 
   max_concurrent_installers = 10,
 }
-
--- options = require("core.utils").load_override(options, "williamboman/mason.nvim")
 
 vim.api.nvim_create_user_command("MasonInstallAll", function()
   vim.cmd("MasonInstall " .. table.concat(options.ensure_installed, " "))
