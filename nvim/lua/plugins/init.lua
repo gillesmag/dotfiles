@@ -15,11 +15,11 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     module = "nvim-treesitter",
+    run = ":TSUpdate",
     setup = function()
       require("core.lazy_load").on_file_open "nvim-treesitter"
     end,
     cmd = require("core.lazy_load").treesitter_cmds,
-    run = ":TSUpdate",
     config = function()
       require("plugins.configs.treesitter")
     end,
@@ -35,16 +35,6 @@ local plugins = {
 
   -- Telescope
   {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup()
-    end,
-  },
-
-  { "nvim-telescope/telescope-file-browser.nvim" },
-  { "nvim-telescope/telescope-project.nvim" },
-
-  {
     "nvim-telescope/telescope.nvim",
     module = "telescope",
     cmd = "Telescope",
@@ -56,23 +46,28 @@ local plugins = {
     end
   },
 
+  { "nvim-telescope/telescope-file-browser.nvim" },
+
   -- LSP
   {
     "williamboman/mason.nvim",
     cmd = require("core.lazy_load").mason_cmds,
     config = function()
-      require "plugins.configs.mason"
+      require("plugins.configs.mason")
     end,
   },
 
   {
-    "neovim/nvim-lspconfig",
-    --opt = true,
-    setup = function()
-      require("core.lazy_load").on_file_open "nvim-lspconfig"
-    end,
+    "williamboman/mason-lspconfig.nvim",
     config = function()
-      require "plugins.configs.lspconfig"
+      require("plugins.configs.mason_lspconfig")
+    end
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("plugins.configs.lspconfig")
     end
   },
 
@@ -84,12 +79,21 @@ local plugins = {
     end,
   },
 
-  -- UI
+  -- Completion
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require("plugins.configs.cmp")
+    end
+  },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip" },
+  { "rafamadriz/friendly-snippets" },
 
-  -- Icons
+  -- UI
   { "kyazdani42/nvim-web-devicons" },
 
-  -- Theme
   {
     "folke/tokyonight.nvim",
     config = function()
@@ -106,7 +110,7 @@ local plugins = {
           theme = 'tokyonight',
           icons_enabled = true,
           section_separators = '',
-          component_separators = ''
+          component_separators = '',
         }
       }
     end
@@ -125,7 +129,7 @@ local plugins = {
     end,
   },
 
-  -- File explorer(s)
+  -- File explorer
   {
     "kyazdani42/nvim-tree.lua",
     config = function()
@@ -133,13 +137,9 @@ local plugins = {
     end
   },
 
+  -- TODO(gm): no idea what those do again
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
-
-  --{
-  --  "folke/twilight.nvim",
-  --  config = function() require("twilight").setup {} end,
-  --},
 
   {
     "numToStr/Comment.nvim",
@@ -150,6 +150,13 @@ local plugins = {
     end,
     config = function()
        require("core.keymaps").comment()
+    end,
+  },
+
+  {
+    "ethanholz/nvim-lastplace",
+    config = function()
+      require('nvim-lastplace').setup {}
     end,
   },
 

@@ -24,6 +24,7 @@ local default = {
     "vim",
     "yaml",
   },
+  auto_install = true,
   highlight = {
     enable = true,
     use_languagetree = true,

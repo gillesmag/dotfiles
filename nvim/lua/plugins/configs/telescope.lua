@@ -12,8 +12,7 @@ telescope.setup(options)
 
 local extensions = {
   "file_browser",
-  "project",
-  "projects",
+  -- "projects",
 }
 
 for _, ext in ipairs(extensions) do
