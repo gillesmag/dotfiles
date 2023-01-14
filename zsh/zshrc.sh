@@ -7,6 +7,7 @@ plugins=(
   fnm
   git
   pyenv
+  tmux
   vim
   zoxide
 )
