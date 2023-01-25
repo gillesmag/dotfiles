@@ -6,13 +6,18 @@ end
 
 local options = {
   borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+  pickers = {
+    find_files = {
+      -- hidden = true,
+      no_ignore = true,
+    }
+  }
 }
 
 telescope.setup(options)
 
 local extensions = {
   "file_browser",
-  -- "projects",
 }
 
 for _, ext in ipairs(extensions) do
