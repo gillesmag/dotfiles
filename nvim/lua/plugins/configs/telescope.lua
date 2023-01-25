@@ -5,6 +5,11 @@ if not present then
 end
 
 local options = {
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+    }
+  },
   borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
   pickers = {
     find_files = {
