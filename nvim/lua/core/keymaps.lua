@@ -18,11 +18,11 @@ M.general = function()
   map("n", "<leader>h", ":nohlsearch<CR>")
 
   -- Switch between windows
-  map("n", "<leader><tab>", "<C-w>w")
-  map("n", "<leader>wh", "<C-w>h")
-  map("n", "<leader>wl", "<C-w>l")
-  map("n", "<leader>wj", "<C-w>j")
-  map("n", "<leader>wk", "<C-w>k")
+  map("n", "<tab>", "<C-w>w")
+  map("n", "H", "<C-w>h")
+  map("n", "L", "<C-w>l")
+  map("n", "J", "<C-w>j")
+  map("n", "K", "<C-w>k")
 
   -- Resize with arrows
   -- map("n", "<C-Up>", ":resize -2<CR>")
@@ -37,16 +37,12 @@ M.general = function()
   map("n", "<leader>wK", "<C-w>K")
 
   -- Split windows
-  map("n", "<leader>w\\", ":vsplit<CR>")
-  map("n", "<leader>w-", ":split<CR>")
+  map("n", "<leader>\\", ":vsplit<CR>")
+  map("n", "<leader>-", ":split<CR>")
 
   -- Buffers
   map("n", "<leader>bn", ":enew<CR>")
   map("n", "<leader>bd", ":bd<CR>")
-
-  -- Split vertically and horizontally
-  map("n", "<leader>b|", ":vsplit<CR>")
-  map("n", "<leader>b-", ":split<CR>")
 
   -- Open file under word in respective application
   map("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>")
