@@ -6,6 +6,7 @@ end
 
 local servers = {
   ansiblels = {},
+  bashls = {},
   clangd = {},
   cmake = {},
   cssls = {},
@@ -64,14 +65,7 @@ end
 --   },
 -- }
 
-
 local client_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
--- lspconfig.sumneko_lua.setup {
---     on_attach = M.on_attach,
---     capabilities = capabilities,
---
--- }
 
 for server, config in pairs(servers) do
   config.on_attach = on_attach

@@ -79,6 +79,13 @@ local plugins = {
     end,
   },
 
+  {
+    "j-hui/fidget.nvim",
+    config = function()
+      require('fidget').setup()
+    end
+  },
+
   -- Completion
   {
     "hrsh7th/nvim-cmp",
@@ -140,6 +147,8 @@ local plugins = {
   -- TODO(gm): no idea what those do again
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
+
+  { "tpope/vim-sleuth" },
 
   {
     "numToStr/Comment.nvim",
