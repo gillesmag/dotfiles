@@ -25,10 +25,10 @@ M.general = function()
   map("n", "K", "<C-w>k")
 
   -- Resize with arrows
-  -- map("n", "<C-Up>", ":resize -2<CR>")
-  -- map("n", "<C-Down>", ":resize +2<CR>")
-  -- map("n", "<C-Left>", ":vertical resize -2<CR>")
-  -- map("n", "<C-Right>", ":vertical resize +2<CR>")
+  map("n", "<C-k>", ":resize -2<CR>")
+  map("n", "<C-j>", ":resize +2<CR>")
+  map("n", "<C-h>", ":vertical resize -2<CR>")
+  map("n", "<C-l>", ":vertical resize +2<CR>")
 
   -- Move windows around
   map("n", "<leader>wH", "<C-w>H")
