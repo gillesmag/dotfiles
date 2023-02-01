@@ -5,8 +5,6 @@ if not present then
 end
 
 mason.setup({
-  PATH = "skip",
-
   ui = {
     icons = {
       package_pending = " ",

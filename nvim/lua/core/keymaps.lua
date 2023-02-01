@@ -72,7 +72,6 @@ M.lspconfig = function()
     ["ls"] = vim.lsp.buf.signature_help,
     ["r"] = vim.lsp.buf.rename,
     ["wa"] = vim.lsp.buf.add_workspace_folder,
-    -- ["wl"] = function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
     ["wr"] = vim.lsp.buf.remove_workspace_folder,
   }
 

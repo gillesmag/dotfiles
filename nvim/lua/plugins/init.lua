@@ -1,8 +1,9 @@
 vim.cmd "packadd packer.nvim"
 
 local plugins = {
-  { "nvim-lua/plenary.nvim" },
   { "wbthomason/packer.nvim" },
+
+  { "nvim-lua/plenary.nvim" },
 
   { "lewis6991/impatient.nvim" },
   { "nathom/filetype.nvim" },
@@ -16,10 +17,6 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     module = "nvim-treesitter",
     run = ":TSUpdate",
-    setup = function()
-      require("core.lazy_load").on_file_open "nvim-treesitter"
-    end,
-    cmd = require("core.lazy_load").treesitter_cmds,
     config = function()
       require("plugins.configs.treesitter")
     end,
@@ -51,7 +48,6 @@ local plugins = {
   -- LSP
   {
     "williamboman/mason.nvim",
-    cmd = require("core.lazy_load").mason_cmds,
     config = function()
       require("plugins.configs.mason")
     end,
@@ -84,6 +80,10 @@ local plugins = {
     config = function()
       require('fidget').setup()
     end
+  },
+
+  {
+    "folke/neodev.nvim",
   },
 
   -- Completion
@@ -144,11 +144,8 @@ local plugins = {
     end
   },
 
-  -- TODO(gm): no idea what those do again
-  { "tpope/vim-repeat" },
-  { "tpope/vim-surround" },
-
-  { "tpope/vim-sleuth" },
+  { "tpope/vim-surround" }, -- Delete, change and add surrounding pairs (paranetheses, brackets, etc.)
+  { "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 
   {
     "numToStr/Comment.nvim",

@@ -5,6 +5,7 @@ if not present then
 end
 
 mason_lspconfig.setup({
+  automatic_installation = true,
   ensure_installed = {
     "ansiblels", -- Ansible
     "clangd", -- C/C++

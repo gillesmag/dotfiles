@@ -1,1 +1,1 @@
-alias cat="bat"
+alias c="bat"
