@@ -25,9 +25,9 @@ local default = {
     "yaml",
   },
   auto_install = true,
+  indent = { enable = true, disable = { "python" } },
   highlight = {
     enable = true,
-    use_languagetree = true,
   },
 }
 

@@ -38,37 +38,14 @@ local servers = {
   yamlls = {},
 }
 
-local on_attach = function(client, _)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-
-    require("core.keymaps").lspconfig()
+local on_attach = function(_, bufnr)
+    require("core.keymaps").lspconfig(bufnr)
 end
 
--- local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-
--- client_capabilities.capabilities.textDocument.completion.completionItem = {
---   documentationFormat = { "markdown", "plaintext" },
---   snippetSupport = true,
---   preselectSupport = true,
---   insertReplaceSupport = true,
---   labelDetailsSupport = true,
---   deprecatedSupport = true,
---   commitCharactersSupport = true,
---   tagSupport = { valueSet = { 1 } },
---   resolveSupport = {
---     properties = {
---       "documentation",
---       "detail",
---       "additionalTextEdits",
---     },
---   },
--- }
-
-local client_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 for server, config in pairs(servers) do
   config.on_attach = on_attach
-  config.capabilities = vim.tbl_deep_extend("keep", config.capabilities or {}, client_capabilities)
+  config.capabilities = vim.tbl_deep_extend("keep", config.capabilities or {}, capabilities)
   lspconfig[server].setup(config)
 end

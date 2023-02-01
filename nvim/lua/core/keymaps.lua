@@ -1,5 +1,5 @@
-local map = function(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, {})
+local map = function(mode, lhs, rhs, bufnr)
+  vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
 end
 
 local M = {}
@@ -56,7 +56,7 @@ M.nvimtree = function()
   map("n", "<leader>e", ":NvimTreeFocus <CR>")
 end
 
-M.lspconfig = function()
+M.lspconfig = function(bufnr)
   local keymap = {
     ["D"] = vim.lsp.buf.type_definition,
     ["K"] = vim.lsp.buf.hover,
@@ -76,7 +76,7 @@ M.lspconfig = function()
   }
 
   for k, v in pairs(keymap) do
-    map("n", "<leader>" .. k, v)
+    map("n", "<leader>" .. k, v, bufnr)
   end
 end
 
