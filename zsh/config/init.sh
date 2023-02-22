@@ -9,6 +9,7 @@ done
 unset plugin
 
 source $ZSH/aliases.zsh
+source $ZSH/variables.zsh
 
 if [[ -f "$HOME/.zsh_custom" ]]; then
   source "$HOME/.zsh_custom"
