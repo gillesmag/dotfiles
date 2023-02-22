@@ -17,7 +17,7 @@ local servers = {
   jsonls = {},
   pyright = {},
   rust_analyzer = {},
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = {globals = {"vim"}},

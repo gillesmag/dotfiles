@@ -7,6 +7,9 @@ if not present then
 end
 
 cmp.setup({
+  window = {
+    documentation = cmp.config.window.bordered()
+  },
   mapping = cmp.mapping.preset.insert(
     require("core.keymaps").cmp(cmp)
   ),

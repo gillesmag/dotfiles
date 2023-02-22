@@ -22,7 +22,22 @@ local plugins = {
     end,
   },
 
+  {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup()
+    end
+  },
+
   -- Git
+  {
+    "tpope/vim-fugitive",
+    setup = function()
+      require("core.keymaps").fugitive()
+    end
+  },
+
   {
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -171,6 +186,8 @@ local plugins = {
 
   -- HCL
   { "jvirtanen/vim-hcl" },
+
+  { "github/copilot.vim" },
 }
 
 require("core.packer").run(plugins)

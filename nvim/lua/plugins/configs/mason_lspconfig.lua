@@ -18,7 +18,7 @@ mason_lspconfig.setup({
     "jsonls", -- JSON
     "pyright", -- Python
     "rust_analyzer", -- Rust
-    "sumneko_lua", -- Lua
+    "lua_ls", -- Lua
     "terraformls", -- Terraform
     "texlab", -- LaTeX
     "tsserver", -- JavaScript/TypeScript

@@ -13,28 +13,18 @@ M.general = function()
   map("n", "<leader>wq", ":wq<CR>")
   map("n", "<leader>q", ":q<CR>")
 
-  -- Unhighlight searched term
-  map("v", "<leader>h", ":nohlsearch<CR>")
-  map("n", "<leader>h", ":nohlsearch<CR>")
-
-  -- Switch between windows
+  -- Move windows around
   map("n", "<tab>", "<C-w>w")
-  map("n", "H", "<C-w>h")
-  map("n", "L", "<C-w>l")
-  map("n", "J", "<C-w>j")
-  map("n", "K", "<C-w>k")
+  map("n", "<leader>h", "<C-w>h")
+  map("n", "<leader>l", "<C-w>l")
+  map("n", "<leader>j", "<C-w>j")
+  map("n", "<leader>k", "<C-w>k")
 
   -- Resize with arrows
   map("n", "<C-k>", ":resize -2<CR>")
   map("n", "<C-j>", ":resize +2<CR>")
   map("n", "<C-h>", ":vertical resize -2<CR>")
   map("n", "<C-l>", ":vertical resize +2<CR>")
-
-  -- Move windows around
-  map("n", "<leader>wH", "<C-w>H")
-  map("n", "<leader>wL", "<C-w>L")
-  map("n", "<leader>wJ", "<C-w>J")
-  map("n", "<leader>wK", "<C-w>K")
 
   -- Split windows
   map("n", "<leader>\\", ":vsplit<CR>")
@@ -116,6 +106,10 @@ M.cmp = function(cmp)
     ["<C-e>"] = cmp.mapping.abort(),
     ["<C-Space>"] = cmp.mapping.confirm({ select = true }),
   }
+end
+
+M.fugitive = function()
+  map("n", "<leader>gb", ":Git blame<CR>")
 end
 
 M.setup = function()
