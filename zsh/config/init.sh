@@ -3,7 +3,6 @@
 
 for plugin in ${plugins[@]}; do
   if [[ -f "$ZSH/plugins/$plugin.plugin.zsh" ]]; then
-    echo "Loading $plugin plugin..."
     source "$ZSH/plugins/$plugin.plugin.zsh"
   fi
 done
