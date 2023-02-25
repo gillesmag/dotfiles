@@ -4,9 +4,7 @@ export ZSH=$HOME/.zsh
 plugins=(
   bat
   exa
-  fnm
   git
-  pyenv
   tmux
   vim
   zoxide
