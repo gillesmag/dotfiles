@@ -1,8 +1,9 @@
 # If ZSH is not defined, use the current script's directory.
 [[ -z "$ZSH" ]] && export ZSH="${${(%):-%x}:a:h}"
 
-for plugin ($plugins); do
+for plugin in ${plugins[@]}; do
   if [[ -f "$ZSH/plugins/$plugin.plugin.zsh" ]]; then
+    echo "Loading $plugin plugin..."
     source "$ZSH/plugins/$plugin.plugin.zsh"
   fi
 done
