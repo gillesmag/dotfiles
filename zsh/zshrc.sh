@@ -8,6 +8,7 @@ plugins=(
   tmux
   vim
   zoxide
+  rtx
 )
 
 source $ZSH/init.sh
