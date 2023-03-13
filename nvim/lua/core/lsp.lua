@@ -9,6 +9,7 @@ local servers = {
   "html",          -- HTML
   "jdtls",         -- Java
   "jsonls",        -- JSON
+  "jsonnet_ls",    -- Jsonnet
   "lua_ls",        -- Lua
   "pyright",       -- Python
   "rust_analyzer", -- Rust

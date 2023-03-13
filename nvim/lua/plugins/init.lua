@@ -194,6 +194,9 @@ local plugins = {
   -- HCL
   { "jvirtanen/vim-hcl" },
 
+  -- Jsonnet
+  { "google/vim-jsonnet" },
+
   { "github/copilot.vim" },
 }
 
