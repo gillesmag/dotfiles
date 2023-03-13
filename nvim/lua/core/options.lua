@@ -2,6 +2,8 @@ local opt = vim.opt
 local g = vim.g
 
 g.mapleader = " "                    -- Set leader key to space
+g.loaded_netrw = 1                   -- Disable netrw
+g.loaded_netrwPlugin = 1             -- Disable netrw
 
 -- UI
 opt.cursorline = true                -- Enable cursor line

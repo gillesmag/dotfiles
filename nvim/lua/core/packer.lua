@@ -22,7 +22,7 @@ M.run = function(plugins)
   end
 
   packer.startup(function(use)
-    for _, v in pairs(plugins) do
+    for _, v in ipairs(plugins) do
       use(v)
     end
   end)

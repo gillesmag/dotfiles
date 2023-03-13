@@ -156,9 +156,16 @@ local plugins = {
 
   -- File explorer
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+      "nvim-tree/nvim-web-devicons",
+    },
     config = function()
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        filters = {
+          dotfiles = false
+        },
+      })
     end
   },
 
