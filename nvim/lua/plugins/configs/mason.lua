@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-mason.setup({
+mason.setup {
   ui = {
     icons = {
       package_pending = " ",
@@ -25,4 +25,4 @@ mason.setup({
   },
 
   max_concurrent_installers = 10,
-})
+}

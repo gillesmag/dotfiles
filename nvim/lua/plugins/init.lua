@@ -10,7 +10,7 @@ local plugins = {
 
   {
     "folke/lua-dev.nvim",
-    module = "lua-dev"
+    module = "lua-dev",
   },
 
   {
@@ -18,7 +18,7 @@ local plugins = {
     module = "nvim-treesitter",
     run = ":TSUpdate",
     config = function()
-      require("plugins.configs.treesitter")
+      require "plugins.configs.treesitter"
     end,
   },
 
@@ -27,7 +27,7 @@ local plugins = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup()
-    end
+    end,
   },
 
   -- Git
@@ -35,14 +35,14 @@ local plugins = {
     "tpope/vim-fugitive",
     setup = function()
       require("core.keymaps").fugitive()
-    end
+    end,
   },
 
   {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
-    end
+    end,
   },
 
   -- Telescope
@@ -51,11 +51,11 @@ local plugins = {
     module = "telescope",
     cmd = "Telescope",
     config = function()
-      require("plugins.configs.telescope")
+      require "plugins.configs.telescope"
     end,
     setup = function()
       require("core.keymaps").telescope()
-    end
+    end,
   },
 
   { "nvim-telescope/telescope-file-browser.nvim" },
@@ -64,22 +64,22 @@ local plugins = {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("plugins.configs.mason")
+      require "plugins.configs.mason"
     end,
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("plugins.configs.mason_lspconfig")
-    end
+      require "plugins.configs.mason_lspconfig"
+    end,
   },
 
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("plugins.configs.lspconfig")
-    end
+      require "plugins.configs.lspconfig"
+    end,
   },
 
   {
@@ -93,23 +93,23 @@ local plugins = {
   {
     "j-hui/fidget.nvim",
     config = function()
-      require('fidget').setup()
-    end
+      require("fidget").setup()
+    end,
   },
 
   {
     "folke/neodev.nvim",
     config = function()
       require("neodev").setup()
-    end
+    end,
   },
 
   -- Completion
   {
     "hrsh7th/nvim-cmp",
     config = function()
-      require("plugins.configs.cmp")
-    end
+      require "plugins.configs.cmp"
+    end,
   },
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip" },
@@ -123,7 +123,7 @@ local plugins = {
     "folke/tokyonight.nvim",
     config = function()
       vim.cmd "colorscheme tokyonight"
-    end
+    end,
   },
 
   -- Status line
@@ -132,13 +132,13 @@ local plugins = {
     config = function()
       require("lualine").setup {
         options = {
-          theme = 'tokyonight',
+          theme = "tokyonight",
           icons_enabled = true,
-          section_separators = '',
-          component_separators = '',
-        }
+          section_separators = "",
+          component_separators = "",
+        },
       }
-    end
+    end,
   },
 
   -- Buffer line
@@ -149,7 +149,7 @@ local plugins = {
       require("bufferline").setup {
         options = {
           mode = "tabs",
-        }
+        },
       }
     end,
   },
@@ -161,12 +161,12 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require("nvim-tree").setup({
+      require("nvim-tree").setup {
         filters = {
-          dotfiles = false
+          dotfiles = false,
         },
-      })
-    end
+      }
+    end,
   },
 
   { "tpope/vim-surround" }, -- Delete, change and add surrounding pairs (paranetheses, brackets, etc.)
@@ -177,17 +177,17 @@ local plugins = {
     module = "Comment",
     keys = { "gcc" },
     setup = function()
-      require('Comment').setup()
+      require("Comment").setup()
     end,
     config = function()
-       require("core.keymaps").comment()
+      require("core.keymaps").comment()
     end,
   },
 
   {
     "ethanholz/nvim-lastplace",
     config = function()
-      require('nvim-lastplace').setup {}
+      require("nvim-lastplace").setup {}
     end,
   },
 
@@ -197,7 +197,15 @@ local plugins = {
   -- Jsonnet
   { "google/vim-jsonnet" },
 
+  -- GitHub Copilot
   { "github/copilot.vim" },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
 }
 
 require("core.packer").run(plugins)

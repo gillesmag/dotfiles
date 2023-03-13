@@ -13,7 +13,6 @@ local sources = {
 
   -- Lua
   b.formatting.lua_format,
-
 }
 
 null_ls.setup {

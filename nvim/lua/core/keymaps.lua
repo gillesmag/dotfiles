@@ -58,7 +58,7 @@ M.lspconfig = function(bufnr)
     ["gD"] = vim.lsp.buf.declaration,
     ["gd"] = vim.lsp.buf.definition,
     ["gi"] = vim.lsp.buf.implementation,
-    ["gr"] = require('telescope.builtin').lsp_references,
+    ["gr"] = require("telescope.builtin").lsp_references,
     ["ls"] = vim.lsp.buf.signature_help,
     ["r"] = vim.lsp.buf.rename,
     ["wa"] = vim.lsp.buf.add_workspace_folder,
@@ -71,7 +71,7 @@ M.lspconfig = function(bufnr)
 end
 
 M.telescope = function()
-  local builtin = require("telescope.builtin")
+  local builtin = require "telescope.builtin"
   local keymap = {
     ["<leader>"] = builtin.buffers,
     ["fb"] = builtin.file_browser,
@@ -104,7 +104,7 @@ M.cmp = function(cmp)
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-o>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<C-Space>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.confirm { select = true },
   }
 end
 
