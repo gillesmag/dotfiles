@@ -1,12 +1,6 @@
-vim.cmd "packadd packer.nvim"
-
 local plugins = {
-  { "wbthomason/packer.nvim" },
-
-  { "nvim-lua/plenary.nvim" },
-
-  { "lewis6991/impatient.nvim" },
-  { "nathom/filetype.nvim" },
+  "lewis6991/impatient.nvim",
+  "nathom/filetype.nvim",
 
   {
     "folke/lua-dev.nvim",
@@ -16,7 +10,7 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     module = "nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     config = function()
       require "plugins.configs.treesitter"
     end,
@@ -24,7 +18,7 @@ local plugins = {
 
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("todo-comments").setup()
     end,
@@ -33,7 +27,7 @@ local plugins = {
   -- Git
   {
     "tpope/vim-fugitive",
-    setup = function()
+    init = function()
       require("core.keymaps").fugitive()
     end,
   },
@@ -53,16 +47,17 @@ local plugins = {
     config = function()
       require "plugins.configs.telescope"
     end,
-    setup = function()
+    init = function()
       require("core.keymaps").telescope()
     end,
   },
 
-  { "nvim-telescope/telescope-file-browser.nvim" },
+  "nvim-telescope/telescope-file-browser.nvim",
 
   -- LSP
   {
     "williamboman/mason.nvim",
+    build = ":MasonUpdate",
     config = function()
       require "plugins.configs.mason"
     end,
@@ -72,7 +67,7 @@ local plugins = {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require "plugins.configs.mason_lspconfig"
-    end,
+    end
   },
 
   {
@@ -84,7 +79,7 @@ local plugins = {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
-    after = "nvim-lspconfig",
+    dependencies = { "nvim-lspconfig" },
     config = function()
       require "plugins.configs.null-ls"
     end,
@@ -111,14 +106,12 @@ local plugins = {
       require "plugins.configs.cmp"
     end,
   },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "L3MON4D3/LuaSnip" },
-  { "saadparwaiz1/cmp_luasnip" },
-  { "rafamadriz/friendly-snippets" },
+  "hrsh7th/cmp-nvim-lsp",
+  "L3MON4D3/LuaSnip",
+  "saadparwaiz1/cmp_luasnip",
+  "rafamadriz/friendly-snippets",
 
   -- UI
-  { "kyazdani42/nvim-web-devicons" },
-
   {
     "folke/tokyonight.nvim",
     config = function()
@@ -144,7 +137,7 @@ local plugins = {
   -- Buffer line
   {
     "akinsho/bufferline.nvim",
-    tag = "v2.*",
+    version = "v3.*",
     config = function()
       require("bufferline").setup {
         options = {
@@ -157,7 +150,7 @@ local plugins = {
   -- File explorer
   {
     "nvim-tree/nvim-tree.lua",
-    requires = {
+    dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
@@ -169,17 +162,20 @@ local plugins = {
     end,
   },
 
-  { "tpope/vim-surround" }, -- Delete, change and add surrounding pairs (paranetheses, brackets, etc.)
-  { "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
+  -- Delete, change and add surrounding pairs (paranetheses, brackets, etc.)
+  "tpope/vim-surround",
+
+  -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-sleuth",
 
   {
     "numToStr/Comment.nvim",
     module = "Comment",
     keys = { "gcc" },
-    setup = function()
+    config = function()
       require("Comment").setup()
     end,
-    config = function()
+    init = function()
       require("core.keymaps").comment()
     end,
   },
@@ -192,13 +188,13 @@ local plugins = {
   },
 
   -- HCL
-  { "jvirtanen/vim-hcl" },
+  "jvirtanen/vim-hcl",
 
   -- Jsonnet
-  { "google/vim-jsonnet" },
+  "google/vim-jsonnet",
 
   -- GitHub Copilot
-  { "github/copilot.vim" },
+  "github/copilot.vim",
 
   {
     "NvChad/nvim-colorizer.lua",
@@ -208,4 +204,4 @@ local plugins = {
   },
 }
 
-require("core.packer").run(plugins)
+require("lazy").setup(plugins)
