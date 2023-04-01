@@ -67,7 +67,7 @@ local plugins = {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require "plugins.configs.mason_lspconfig"
-    end
+    end,
   },
 
   {
