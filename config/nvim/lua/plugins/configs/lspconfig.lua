@@ -26,7 +26,9 @@ local on_attach = function(_, bufnr)
   require("core.keymaps").lspconfig(bufnr)
 end
 
-local servers = require "core.lsp"
+local servers = vim.deepcopy(require "core.lsp")
+servers[#servers + 1] = "metals"
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 for _, server in ipairs(servers) do

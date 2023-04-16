@@ -196,6 +196,14 @@ local plugins = {
   -- GitHub Copilot
   "github/copilot.vim",
 
+  -- Scala
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    }
+  },
+
   {
     "NvChad/nvim-colorizer.lua",
     config = function()

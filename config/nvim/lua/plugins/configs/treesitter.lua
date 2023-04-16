@@ -18,6 +18,7 @@ local default = {
     "lua",
     "python",
     "rust",
+    "scala",
     "sql",
     "toml",
     "typescript",
