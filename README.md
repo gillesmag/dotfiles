@@ -2,7 +2,7 @@
 
 - Editor: `nvim`
 - Terminal: `iTerm`
-- Font: [JetBrainsMono Nerd Font](https://nerdfonts.com/font-downloads)
+- Font: [SFMono Nerd Font](https://github.com/epk/SF-Mono-Nerd-Font)
 
 - Colorscheme: [Tokyo Night](https://github.com/folke/tokyonight.nvim)
 

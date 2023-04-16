@@ -1,0 +1,64 @@
+window:
+  dynamic_padding: true
+  dimensions:
+    columns: 100
+    lines: 40
+  padding:
+    x: 5
+    y: 5
+  decorations: buttonless
+  option_as_alt: OnlyLeft
+
+font:
+  size: 11.0
+  offset:
+    y: 4
+  glyph_offset:
+    y: 2
+  normal:
+    family: "SFMono Nerd Font"
+    style: "Regular"
+  bold:
+    family: "SFMono Nerd Font"
+    style: "Semibold"
+
+env:
+  TERM: xterm-256color
+
+cursor:
+  style:
+    blinking: Never
+
+# Tokyo Night 
+colors:
+  primary:
+    background: '#1a1b26'
+    foreground: '#c0caf5'
+    #background: '0x222436'
+    #foreground: '0xc8d3f5'
+
+  # Normal colors
+  normal:
+    black:   '#15161e'
+    red:     '#f7768e'
+    green:   '#9ece6a'
+    yellow:  '#e0af68'
+    blue:    '#7aa2f7'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+    white:   '#a9b1d6'
+
+  # Bright colors
+  bright:
+    black:   '#414868'
+    red:     '#f7768e'
+    green:   '#9ece6a'
+    yellow:  '#e0af68'
+    blue:    '#7aa2f7'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+    white:   '#c0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '#ff9e64' }
+    - { index: 17, color: '#db4b4b' }

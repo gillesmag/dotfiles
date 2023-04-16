@@ -12,6 +12,7 @@ if [[ ! -d "$HOME/.config" ]]; then
 fi
 
 ln -nfs "$(pwd)/nvim" ~/.config/nvim
+ln -nfs "$(pwd)/config/alacritty" ~/.config/alacritty
 
 # ZSH configuration
 if [[ -f "$HOME/.zshrc" ]]; then
