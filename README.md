@@ -1,16 +1,13 @@
 # `dotfiles`
 
-- Editor: `nvim`
-- Terminal: `iTerm`
+- Editor: [`nvim`](https://neovim.io/)
+- Terminal: [`Alacritty`](https://github.com/alacritty/alacritty)
 - Font: [SFMono Nerd Font](https://github.com/epk/SF-Mono-Nerd-Font)
 
 - Colorscheme: [Tokyo Night](https://github.com/folke/tokyonight.nvim)
 
 Goals:
 - Fast (zsh startup < 100ms)
-
-TODOs:
-- GitHub action to benchmark zsh startup time
 
 # macOS
 
