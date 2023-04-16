@@ -11,4 +11,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: "v0.17.0"
-          args: --check .
+          args: --check config/neovim
