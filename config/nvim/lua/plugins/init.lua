@@ -1,6 +1,5 @@
 local plugins = {
   "lewis6991/impatient.nvim",
-  "nathom/filetype.nvim",
 
   {
     "folke/lua-dev.nvim",
@@ -51,8 +50,6 @@ local plugins = {
       require("core.keymaps").telescope()
     end,
   },
-
-  "nvim-telescope/telescope-file-browser.nvim",
 
   -- LSP
   {

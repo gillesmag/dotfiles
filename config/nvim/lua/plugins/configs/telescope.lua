@@ -20,11 +20,3 @@ local options = {
 }
 
 telescope.setup(options)
-
-local extensions = {
-  "file_browser",
-}
-
-for _, ext in ipairs(extensions) do
-  telescope.load_extension(ext)
-end
