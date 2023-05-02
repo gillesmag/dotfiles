@@ -1,101 +1,107 @@
-local map = function(mode, lhs, rhs, bufnr)
-  vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
+local modemap = function(keymap, bufnr)
+  for mode, bindings in pairs(keymap) do
+    for lhs, rhs in pairs(bindings) do
+      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
+    end
+  end
 end
 
 local M = {}
 
 M.general = function()
-  -- Fast escape
-  map("i", "jk", "<ESC>")
+  modemap {
+    i = {
+      -- Fast escape
+      ["jk"] = "<ESC>",
+    },
+    n = {
+      -- Write, write & quit and quit
+      ["<leader>w"] = ":w<CR>",
+      ["<leader>wq"] = ":wq<CR>",
+      ["<leader>q"] = ":q<CR>",
 
-  -- Write, write & quit and quit
-  map("n", "<leader>w", ":w<CR>")
-  map("n", "<leader>wq", ":wq<CR>")
-  map("n", "<leader>q", ":q<CR>")
+      -- Move windows around
+      ["<tab>"] = "<C-w>w",
+      ["<leader>h"] = "<C-w>h",
+      ["<leader>l"] = "<C-w>l",
+      ["<leader>j"] = "<C-w>j",
+      ["<leader>k"] = "<C-w>k",
 
-  -- Move windows around
-  map("n", "<tab>", "<C-w>w")
-  map("n", "<leader>h", "<C-w>h")
-  map("n", "<leader>l", "<C-w>l")
-  map("n", "<leader>j", "<C-w>j")
-  map("n", "<leader>k", "<C-w>k")
+      -- Resize with arrows
+      ["<C-k>"] = ":resize -2<CR>",
+      ["<C-j>"] = ":resize +2<CR>",
+      ["<C-h>"] = ":vertical resize -2<CR>",
+      ["<C-l>"] = ":vertical resize +2<CR>",
 
-  -- Resize with arrows
-  map("n", "<C-k>", ":resize -2<CR>")
-  map("n", "<C-j>", ":resize +2<CR>")
-  map("n", "<C-h>", ":vertical resize -2<CR>")
-  map("n", "<C-l>", ":vertical resize +2<CR>")
+      -- Split windows
+      ["<leader>\\"] = ":vsplit<CR>",
+      ["<leader>-"] = ":split<CR>",
 
-  -- Split windows
-  map("n", "<leader>\\", ":vsplit<CR>")
-  map("n", "<leader>-", ":split<CR>")
+      -- Buffers
+      ["<leader>bn"] = ":enew<CR>",
+      ["<leader>bd"] = ":bd<CR>",
 
-  -- Buffers
-  map("n", "<leader>bn", ":enew<CR>")
-  map("n", "<leader>bd", ":bd<CR>")
-
-  -- Open file under word in respective application
-  map("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>")
-
-  map("v", "<", "<gv")
-  map("v", ">", ">gv")
+      -- Open file under word in respective application
+      ["gx"] = "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>",
+    },
+    v = {
+      ["<"] = "<gv",
+      [">"] = ">gv",
+    },
+  }
 end
 
 M.nvimtree = function()
-  map("n", "<C-n>", ":NvimTreeToggle <CR>")
-  map("n", "<leader>e", ":NvimTreeFocus <CR>")
+  modemap {
+    n = {
+      ["<C-n>"] = ":NvimTreeToggle <CR>",
+      ["<leader>e"] = ":NvimTreeFocus <CR>",
+    },
+  }
 end
 
 M.lspconfig = function(bufnr)
-  local keymap = {
-    ["D"] = vim.lsp.buf.type_definition,
-    ["K"] = vim.lsp.buf.hover,
-    ["[d"] = vim.diagnostic.goto_prev,
-    ["ca"] = vim.lsp.buf.code_action,
-    ["d]"] = vim.diagnostic.goto_next,
-    ["f"] = vim.diagnostic.open_float,
-    ["fm"] = vim.lsp.buf.formatting,
-    ["gD"] = vim.lsp.buf.declaration,
-    ["gd"] = vim.lsp.buf.definition,
-    ["gi"] = vim.lsp.buf.implementation,
-    ["gr"] = require("telescope.builtin").lsp_references,
-    ["ls"] = vim.lsp.buf.signature_help,
-    ["r"] = vim.lsp.buf.rename,
-    ["wa"] = vim.lsp.buf.add_workspace_folder,
-    ["wr"] = vim.lsp.buf.remove_workspace_folder,
-  }
-
-  for k, v in pairs(keymap) do
-    map("n", "<leader>" .. k, v, bufnr)
-  end
+  modemap({
+    n = {
+      ["<leader>D"] = vim.lsp.buf.type_definition,
+      ["<leader>K"] = vim.lsp.buf.hover,
+      ["<leader>[d"] = vim.diagnostic.goto_prev,
+      ["<leader>ca"] = vim.lsp.buf.code_action,
+      ["<leader>d]"] = vim.diagnostic.goto_next,
+      ["<leader>f"] = vim.diagnostic.open_float,
+      ["<leader>fm"] = vim.lsp.buf.formatting,
+      ["<leader>gD"] = vim.lsp.buf.declaration,
+      ["<leader>gd"] = vim.lsp.buf.definition,
+      ["<leader>gi"] = vim.lsp.buf.implementation,
+      ["<leader>gr"] = require("telescope.builtin").lsp_references,
+      ["<leader>ls"] = vim.lsp.buf.signature_help,
+      ["<leader>r"] = vim.lsp.buf.rename,
+      ["<leader>wa"] = vim.lsp.buf.add_workspace_folder,
+      ["<leader>wr"] = vim.lsp.buf.remove_workspace_folder,
+    },
+  }, bufnr)
 end
 
 M.telescope = function()
-  local builtin = require "telescope.builtin"
-  local keymap = {
-    ["<leader>"] = builtin.buffers,
-    ["fb"] = builtin.file_browser,
-    ["ff"] = builtin.find_files,
-    ["fg"] = builtin.live_grep,
-    ["fh"] = builtin.help_tags,
-    ["fo"] = builtin.oldfiles,
-    ["gs"] = builtin.git_status,
+  local t = require "telescope.builtin"
+  modemap {
+    n = {
+      ["<leader><leader>"] = t.buffers,
+      ["<leader>fb"] = t.file_browser,
+      ["<leader>ff"] = t.find_files,
+      ["<leader>fg"] = t.live_grep,
+      ["<leader>fh"] = t.help_tags,
+      ["<leader>fo"] = t.oldfiles,
+      ["<leader>gs"] = t.git_status,
+    },
   }
-
-  for k, v in pairs(keymap) do
-    map("n", "<leader>" .. k, v)
-  end
 end
 
 M.comment = function()
-  local m = "<leader>/"
-  map("n", m, ":lua require('Comment.api').toggle.linewise.current()<CR>")
-  map("v", m, ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
-end
-
-M.packer = function()
-  map("n", "<leader>ps", ":PackerSync<CR>")
-  map("n", "<leader>pc", ":PackerCompile<CR>")
+  modemap {
+    n = { ["<leader>/"] = ":lua require('Comment.api').toggle.linewise.current()<CR>" },
+    v = { ["<leader>/"] = ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>" },
+  }
 end
 
 M.cmp = function(cmp)
@@ -109,13 +115,17 @@ M.cmp = function(cmp)
 end
 
 M.fugitive = function()
-  map("n", "<leader>gb", ":Git blame<CR>")
+  modemap {
+    n = {
+      ["<leader>gb"] = ":Git blame<CR>",
+      ["<leader>gl"] = ":Git log<CR>",
+    },
+  }
 end
 
 M.setup = function()
   M.general()
   M.nvimtree()
-  M.packer()
 end
 
 return M
