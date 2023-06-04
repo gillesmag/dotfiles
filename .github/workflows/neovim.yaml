@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: JohnnyMorganz/stylua-action@v2
+      - name: Lint Neovim configuration
+        uses: JohnnyMorganz/stylua-action@v2
         with:
+          args: -f config/nvim/.stylua.toml --check config/nvim
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: "v0.17.0"
-          args: --check ./config/nvim
+          version: "v0.17.1"

@@ -1,2 +1,2 @@
 check:
-  stylua --check ./config/nvim
+  stylua --check .
