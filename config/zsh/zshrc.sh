@@ -1,5 +1,5 @@
 #zmodload zsh/zprof
-export ZSH=$HOME/.zsh
+export ZSH=$HOME/.config/zsh/config
 
 plugins=(
   bat
@@ -9,6 +9,7 @@ plugins=(
   vim
   zoxide
   rtx
+  home-manager
 )
 
 source $ZSH/init.sh
