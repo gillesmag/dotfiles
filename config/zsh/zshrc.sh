@@ -8,8 +8,8 @@ plugins=(
   tmux
   vim
   zoxide
-  rtx
   home-manager
+  direnv
 )
 
 source $ZSH/init.sh
