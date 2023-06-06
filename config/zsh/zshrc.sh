@@ -8,6 +8,7 @@ plugins=(
   tmux
   vim
   zoxide
+  terraform
   home-manager
   direnv
 )

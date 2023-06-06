@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bash /Users/gm/.ssh/vu/pass.sh > /dev/null && SSH_ASKPASS=/Users/gm/.ssh/vu/pass.sh SSH_ASKPASS_REQUIRE=force $@
