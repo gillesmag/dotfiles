@@ -44,7 +44,9 @@
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
-  programs.zsh.enableCompletion = true;
+  # programs.zsh.enableCompletion = true;
+
+  security.pam.enableSudoTouchIdAuth = true;
 
   system.defaults = {
     dock = {
