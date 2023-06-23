@@ -9,21 +9,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin = {
+    darwin = {
       url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mkAlias = {
-      url = "github:reckenrode/mkAlias";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, mkAlias }@inputs: {
-    darwinConfigurations = {
-      kamino = nix-darwin.lib.darwinSystem {
-        inherit inputs;
+  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
+  let
+    inherit (darwin.lib) darwinSystem;
+    nixpkgsConfig = {
+      config = { allowUnfree = true; };
+    };
+  in
+  {
+    darwinConfigurations = rec {
+      kamino = darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./system/darwin
+
+          home-manager.darwinModules.home-manager {
+            nixpkgs = nixpkgsConfig;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.gm.imports = [ ./home/kamino ];
+            };
+          }
+        ];
+      };
+
+      bespin = darwinSystem {
         system = "aarch64-darwin";
         modules = [
           ./system/darwin
@@ -37,6 +54,12 @@
           }
         ];
       };
+    };
+
+    homeConfigurations.bespin = home-manager.lib.homeManagerConfiguration {
+      inherit inputs;
+      homeDirectory = "/Users/gm";
+      configuration = ./home/kamino;
     };
   };
 }
