@@ -211,5 +211,5 @@ local plugins = {
 }
 
 require("lazy").setup(plugins, {
-  lockfile = "/Users/gm/projects/dotfiles/config/nvim/lazy-lock.json"
+  lockfile = "/Users/gm/projects/dotfiles/config/nvim/lazy-lock.json",
 })
