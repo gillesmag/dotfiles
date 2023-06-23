@@ -34,8 +34,6 @@ colors:
   primary:
     background: '#1a1b26'
     foreground: '#c0caf5'
-    #background: '0x222436'
-    #foreground: '0xc8d3f5'
 
   # Normal colors
   normal:
