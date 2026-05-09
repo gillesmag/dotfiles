@@ -70,6 +70,10 @@
   # Let Determinate Nix handle Nix configuration
   nix.enable = false;
 
+  # Home Manager initializes completion after the user fpath is finalized.
+  # Running compinit globally as well makes interactive startup pay twice.
+  programs.zsh.enableGlobalCompInit = false;
+
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
 

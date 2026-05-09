@@ -129,6 +129,11 @@ in
     programs.zsh = {
       enable = true;
       inherit shellAliases;
+      envExtra = ''
+        # Keep inherited values from nested shells compact before startup
+        # code scans fpath for completions.
+        typeset -U path PATH fpath FPATH
+      '';
       initContent = lib.mkAfter generatedInit;
     };
   };
