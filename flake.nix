@@ -53,8 +53,6 @@
                 useUserPackages = true;
                 users.gm.imports = [
                   ./hosts/kamino/home.nix
-                  ./modules/home/shared.nix
-                  ./modules/home/zsh.nix
                 ];
               };
             }

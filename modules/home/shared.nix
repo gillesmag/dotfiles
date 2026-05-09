@@ -1,5 +1,9 @@
 { pkgs, osConfig, ... }:
 {
+  imports = [
+    ./zsh.nix
+  ];
+
   home.packages = with pkgs; [
     direnv
     bat
@@ -21,6 +25,42 @@
     vim
     nixfmt
   ];
+
+  gm.zsh.aliasGroups = {
+    bat = {
+      c = "bat";
+    };
+
+    codex = {
+      dcodex = "codex --dangerously-bypass-approvals-and-sandbox";
+    };
+
+    git = {
+      g = "git";
+      ga = "git add";
+      gb = "git branch";
+      gd = "git diff";
+      gs = "git status";
+      grs = "git restore --staged";
+      gcm = "git commit -m";
+      gds = "git diff --staged";
+      gpl = "git pull";
+      gpo = "git push -u origin HEAD";
+      gpu = "git push";
+    };
+
+    home-manager = {
+      hm = "home-manager";
+    };
+
+    kubectl = {
+      k = "kubectl";
+    };
+
+    terraform = {
+      tf = "terraform";
+    };
+  };
 
   programs.git = {
     enable = true;
