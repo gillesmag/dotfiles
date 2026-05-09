@@ -1,1 +1,0 @@
-alias hm="home-manager"

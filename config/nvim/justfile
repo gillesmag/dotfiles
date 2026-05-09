@@ -1,2 +1,0 @@
-check:
-  stylua --check .

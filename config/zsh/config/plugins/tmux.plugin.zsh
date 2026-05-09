@@ -1,3 +1,5 @@
+command -v tmux >/dev/null || return
+
 # t: act as a shortcut for tmux when invoked with arguments, or attach to a
 # session named after the current directory when invoked without arguments.
 function t() {

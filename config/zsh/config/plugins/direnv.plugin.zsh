@@ -1,3 +1,3 @@
-command -v direnv > /dev/null 2>&1 || return
+command -v direnv >/dev/null || return
 
 eval "$(direnv hook zsh)"
