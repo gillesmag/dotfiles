@@ -44,4 +44,8 @@
   programs.home-manager.enable = true;
 
   gm.zsh.enable = true;
+
+  gm.zsh.extraAliases = {
+    turbo = "ssh turbo";
+  };
 }
