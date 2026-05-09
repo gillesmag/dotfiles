@@ -46,6 +46,8 @@
   gm.zsh.enable = true;
 
   gm.zsh.extraAliases = {
+    ls = "ls -G";
+    ll = "ls -lahG";
     turbo = "ssh turbo";
   };
 }

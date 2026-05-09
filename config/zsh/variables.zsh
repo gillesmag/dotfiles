@@ -1,4 +1,6 @@
 export EDITOR="vim"
+export CLICOLOR=1
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
 typeset -U path PATH
 path=(
