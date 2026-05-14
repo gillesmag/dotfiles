@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     direnv
+    devenv
     bat
     htop
     tree
