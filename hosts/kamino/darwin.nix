@@ -37,6 +37,7 @@
     ];
 
     brews = [
+      "mas"
       "actionlint"
       "fnm"
       "zstd"
@@ -65,6 +66,10 @@
       "orbstack"
       "spotify"
     ];
+
+    masApps = {
+      "Telegram" = 747648890;
+    };
   };
 
   # Let Determinate Nix handle Nix configuration
