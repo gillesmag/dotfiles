@@ -49,5 +49,6 @@
     ls = "ls -G";
     ll = "ls -lahG";
     turbo = "ssh turbo";
+    turbo2 = "ssh turbo2";
   };
 }
