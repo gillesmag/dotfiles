@@ -27,6 +27,11 @@
     nixfmt
   ];
 
+  home.file.".local/bin/t" = {
+    source = ../../bin/t;
+    executable = true;
+  };
+
   gm.zsh.aliasGroups = {
     bat = {
       c = "bat";
