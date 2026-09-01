@@ -3,7 +3,8 @@
 - Terminal: [`Ghostty`](https://ghostty.org/)
 
 Goals:
-- Fast (zsh startup < 100ms)
+
+- Fast shell startup under 100 ms
 
 # Setup
 

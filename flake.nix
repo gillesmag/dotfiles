@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgsTmux.url = "github:NixOS/nixpkgs/b134951a4c9f3c995fd7be05f3243f8ecd65d798";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -18,19 +19,24 @@
       self,
       nix-darwin,
       nixpkgs,
+      nixpkgsTmux,
       home-manager,
     }:
     let
       system = "aarch64-darwin";
+      linuxSystem = "x86_64-linux";
       inherit (nix-darwin.lib) darwinSystem;
       nixpkgsConfig = {
         config = {
           allowUnfree = true;
         };
       };
-      pkgs = import nixpkgs {
-        inherit system;
+      linuxPkgs = import nixpkgs {
+        system = linuxSystem;
         inherit (nixpkgsConfig) config;
+      };
+      linuxTmuxPkgs = import nixpkgsTmux {
+        system = linuxSystem;
       };
     in
     {
@@ -58,6 +64,14 @@
             }
           ];
         };
+      };
+
+      homeConfigurations."gm@turbo2-gmr" = home-manager.lib.homeManagerConfiguration {
+        pkgs = linuxPkgs;
+        modules = [
+          ./hosts/turbo2-gmr/home.nix
+          { gm.tmux.package = linuxTmuxPkgs.tmux; }
+        ];
       };
     };
 }

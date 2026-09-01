@@ -43,9 +43,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  gm.zsh.enable = true;
+  gm.shell.enable = true;
 
-  gm.zsh.extraAliases = {
+  gm.shell.extraAliases = {
     ls = "ls -G";
     ll = "ls -lahG";
     turbo = "ssh turbo";
